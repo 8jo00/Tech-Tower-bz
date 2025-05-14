@@ -1,0 +1,400 @@
+/* style.css - GAMING EDITION (COMPLETO Y FUNCIONAL) */
+:root {
+    --neon-green: #39ff14;
+    --electric-purple: #8a2be2;
+    --cyber-orange: #ff5f1f;
+    --matrix-black: #0a0a0a;
+    --glow-blue: #00d8ff;
+    --error-red: #ff3860;
+    --success-green: #2ecc71;
+    --transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Fuentes gaming */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Press+Start+2P&display=swap');
+
+/* Estructura principal */
+body {
+    font-family: 'Orbitron', sans-serif;
+    background: 
+        linear-gradient(rgba(10, 10, 10, 0.85), 
+        rgba(10, 10, 10, 0.85)),
+        url('game.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+/* Header estiloso */
+header {
+    text-align: center;
+    padding: 2rem;
+    animation: pulse 2s infinite alternate;
+}
+
+.branding img {
+    height: 100px;
+    filter: drop-shadow(0 0 10px var(--neon-green));
+    transition: transform 0.5s ease;
+}
+
+.branding img:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.branding h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, var(--electric-purple), var(--cyber-orange));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+    margin-bottom: 0.5rem;
+}
+
+.branding p {
+    color: var(--glow-blue);
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+/* Contenedor principal */
+main {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+section {
+    background: rgba(20, 20, 30, 0.8);
+    border: 2px solid var(--electric-purple);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 1.5rem 0;
+    box-shadow: 
+        0 0 15px rgba(138, 43, 226, 0.5),
+        0 0 30px rgba(57, 255, 20, 0.3);
+    backdrop-filter: blur(5px);
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Formularios */
+h2 {
+    font-size: 1.8rem;
+    color: var(--neon-green);
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--cyber-orange), var(--electric-purple));
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--glow-blue);
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: rgba(10, 10, 20, 0.7);
+    border: 1px solid var(--electric-purple);
+    border-radius: 8px;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    transition: var(--transition);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--neon-green);
+    box-shadow: 0 0 10px var(--neon-green);
+}
+
+/* ============== BOTONES (FUNCIONANDO) ============== */
+/* Botones principales */
+button[type="submit"] {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(45deg, var(--electric-purple), var(--cyber-orange));
+    color: white !important;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin: 1rem 0;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    box-shadow: 
+        0 0 10px rgba(138, 43, 226, 0.7),
+        0 0 20px rgba(255, 95, 31, 0.4);
+    cursor: pointer;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 0 20px rgba(138, 43, 226, 0.9),
+        0 0 40px rgba(255, 95, 31, 0.6);
+}
+
+/* Botones secundarios (Forgot Password/Sign In/Create Account) */
+#forgotPassword,
+.toggle-form-btn {
+    background: transparent;
+    border: none;
+    color: var(--glow-blue);
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.3rem 0;
+    margin-left: 5px;
+    transition: var(--transition);
+    position: relative;
+    font-family: 'Orbitron', sans-serif;
+}
+
+#forgotPassword:hover,
+.toggle-form-btn:hover {
+    color: var(--neon-green);
+}
+
+/* Efecto subrayado */
+#forgotPassword::after,
+.toggle-form-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--neon-green);
+    transition: var(--transition);
+}
+
+#forgotPassword:hover::after,
+.toggle-form-btn:hover::after {
+    width: 100%;
+}
+
+/* Efecto shine para botones principales */
+button[type="submit"]::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0)
+    );
+    transform: rotate(30deg);
+    animation: shine 3s infinite;
+}
+
+/* Social Buttons */
+.social-auth {
+    margin: 2rem 0;
+}
+
+.social-btn {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border-radius: 8px;
+    border: 1px solid;
+    background: rgba(20, 20, 30, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: white;
+    transition: var(--transition);
+}
+
+.social-btn.google {
+    border-color: #DB4437;
+}
+
+.social-btn.google:hover {
+    background: rgba(219, 68, 55, 0.2);
+    box-shadow: 0 0 15px #DB4437;
+}
+
+.social-btn.facebook {
+    border-color: #4267B2;
+}
+
+.social-btn.facebook:hover {
+    background: rgba(66, 103, 178, 0.2);
+    box-shadow: 0 0 15px #4267B2;
+}
+
+/* Checkbox estilo gaming */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--electric-purple);
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    margin-right: 8px;
+    transition: var(--transition);
+}
+
+input[type="checkbox"]:checked {
+    background: var(--electric-purple);
+    border-color: var(--neon-green);
+}
+
+input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    color: var(--neon-green);
+    font-weight: bold;
+    left: 2px;
+    top: -3px;
+    text-shadow: 0 0 5px var(--neon-green);
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    color: var(--glow-blue);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+/* Footer con efecto scanlines */
+footer {
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 1px,
+        rgba(57, 255, 20, 0.05) 1px,
+        rgba(57, 255, 20, 0.05) 2px
+    );
+    pointer-events: none;
+}
+
+/* Animaciones */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) rotate(30deg); }
+    100% { transform: translateX(100%) rotate(30deg); }
+}
+
+@keyframes pulse {
+    0% { opacity: 0.8; }
+    100% { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .branding h1 {
+        font-size: 2rem;
+    }
+    
+    section {
+        padding: 1.5rem;
+    }
+}
+
+
+
+
+
+/* Cart Notification Styles */
+.cart-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateX(150%);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 1000;
+}
+
+.cart-notification.show {
+    transform: translateX(0);
+}
+
+/* RGB Animation for Add to Cart */
+@keyframes rgbFlash {
+    0% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
+    20% { box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); }
+    40% { box-shadow: 0 0 10px rgba(0, 0, 255, 0.5); }
+    60% { box-shadow: 0 0 10px rgba(255, 255, 0, 0.5); }
+    80% { box-shadow: 0 0 10px rgba(255, 0, 255, 0.5); }
+    100% { box-shadow: none; }
+}
+
+.add-to-cart {
+    transition: all 0.3s ease;
+}
+
+.add-to-cart:active {
+    animation: rgbFlash 0.5s;
+}
+
+/* Remove item button */
+.remove-item {
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.remove-item:hover {
+    background: #cc0000;
+    transform: scale(1.1);
+}

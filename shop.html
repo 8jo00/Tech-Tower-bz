@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechTower - Shop</title>
+  <link rel="stylesheet" href="style.css">
+ 
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <header>
+    <div class="logo" onclick="window.location.href='index.html'">
+      <img src="logo.png" alt="TechTower Logo">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="repair.html">Repair</a></li>
+      </ul>
+    </nav>
+    <div class="header-right">
+      
+      <!-- In your header section, update the search bar -->
+<div class="search-bar">
+  <input type="text" id="search-input" placeholder="Search products..." aria-label="Search products">
+  <button id="search-button" aria-label="Search"> Search
+  </button>
+</div>
+
+      <div class="account-icon" onclick="window.location.href='account.html'">
+       
+       <a href="game.html"> <img src="gamecontrol.png" alt="Account"></a>
+      </div>
+      <div class="cart-icon" onclick="window.location.href='cart.html'">
+        <img src="carticon .png" alt="Cart">
+        <span class="cart-count">0</span>
+      </div>
+    </div>
+  </header>
+
+
+  <br>
+  <h1><center>Inventory </center></h1>
+  <div class="filter-container">
+    <button id="filter-button" class="filter-button">
+     Filter
+    </button>
+    
+    <div id="filter-menu" class="filter-menu">
+      <div class="filter-header">
+        <h3>Filter Products</h3>
+        <button id="close-filter" class="close-filter"> </button>
+      </div>
+      
+      <div class="filter-section">
+        <h4>Price Range</h4>
+        <div class="price-inputs">
+          <div class="price-input">
+            <label for="min-price">Min</label>
+            <input type="number" id="min-price" placeholder="0" min="0">
+          </div>
+          <div class="price-input">
+            <label for="max-price">Max</label>
+            <input type="number" id="max-price" placeholder="0000" min="0">
+          </div>
+        </div>
+      </div>
+      
+      <div class="filter-section">
+        <h4>Categories</h4>
+        <div class="category-options">
+          <!-- Categories will be populated by JavaScript -->
+        </div>
+      </div>
+      
+      <button id="apply-filters" class="apply-button">Apply Filters</button>
+    </div>
+  </div>
+  <br>
+
+  
+
+  <br>
+</section>
+    <div class="desktopgrid">
+      
+      <!-- RAM 1 -->
+      <div class="desktop-item" data-name="RAM">
+        <img src="ram1.jpeg" alt="Blaze Pro">
+        <h3>G.Skill RipJaws S5</h3>
+        <p> Fast DDR5 RAM with sleek design</p>
+        <ul>
+          <li>Speed: Up to 6,000MHz</li>
+          <li>Type: 288-pin DDR5</li>
+          <li>Chipset support: Intel</li>
+          <li>Capacity: 96GB</li>
+        </ul>
+        <span>$360 BZD</span>
+        <button class="add-to-cart" onclick="addToCart('G.Skill RipJaws S5', 360)">Add to Cart</button>
+      </div>
+  
+      <!-- RAM 2-->
+      <div class="desktop-item" data-name="RAM">
+        <img src="ram2.png" alt="Thunder X">
+        <h3>Corsair Vengeance SODIMM DDR5</h3>
+        <p>Compact, high-speed laptop RAM</p>
+        <ul>
+          <li>Speed: Up to 6,000MHz</li>
+          <li>Type: 288-pin DDR5</li>
+          <li>Chipset support: Intel </li>
+          <li>Capacity: 96GB</li>
+        </ul>
+        <span>$235 BZD</span>
+        <button class="add-to-cart" onclick="addToCart('Corsair Vengeance SODIMM DDR5', 235)">Add to Cart</button>
+      </div>
+  
+      <!-- RAM 3 -->
+      <div class="desktop-item" data-name="RAM">
+        <img src="ram3.jpeg" alt="Frost Nova">
+        <h3>G.Skill Trident Z RGB </h3>
+        <p>RGB DDR5 for gaming builds</p>
+        <ul>
+          <li>Speed: 3,600 MHz</li>
+          <li>Type: 288-pin DDR4</li>
+          <li>Chipset support: Intel, AMD</li>
+          <li>Capacity: 3GB </li>
+        </ul>
+        <span>$400 BZD</span>
+        <button class="add-to-cart" onclick="addToCart('G.Skill Trident Z RGB ', 400)">Add to Cart</button>
+      </div>
+  
+      <!-- SSD 1 -->
+      <div class="desktop-item" data-name="SSD">
+        <img src="SSD1.jpeg" alt="Titan Xtreme">
+        <h3>Samsung 990 Pro</h3>
+        <p>High-speed PCIe Gen 4 SSD</p>
+        <ul>
+          <li>Capacities: 1TB</li>
+          <li>Form Factor: M.2 2280</li>
+          <li>Transfer Interface: PCIe 4.0 x4 / NVMe</li>
+          <li>Sequential Reads: Up to 7,450 MBps </li>
+        </ul>
+        <span>$310 BZD</span>
+        <button class="add-to-cart" onclick="addToCart('Samsung 990 Pro', 310)">Add to Cart</button>
+      </div>
+  
+      <!-- SSD 2 -->
+      <div class="desktop-item" data-name="SSD">
+        <img src="SSD2.jpeg" alt="Phantom Elite">
+        <h3>WD Black SN850X</h3>
+        <p> Gaming SSD with top-tier speeds</p>
+        <ul>
+          <li>Capacities: 8TB</li>
+          <li>Form Factor: M.2 2280</li>
+          <li>Transfer Interface: PCIe 4.0 x 4/NVMe</li>
+          <li>Sequential Reads: Up to 7,300 MBps</li>
+        </ul>
+        <span>$1,025 BZD</span>
+        <button class="add-to-cart" onclick="addToCart('WD Black SN850X', 1025)">Add to Cart</button>
+      </div>
+  
+      <!-- SSD 3 -->
+      <div class="desktop-item" data-name="SSD">
+        <img src="SSD3.png" alt="Nova Lite">
+        <h3>Crucial T705</h3>
+        <p> Ultra-fast PCIe Gen 5 SSD</p>
+        <ul>
+          <li> Capacity:	1 TB</li>
+          <li>Form Factor: M.2 2280</li>
+          <li>Transfer Interface: PCIe 5.0 x4 / NVMe 2.0</li>
+          <li>Sequential Reads: Up to 14,500 MB/s</li>
+        </ul>
+        <span>$500 BZD</span>
+        <button class="add-to-cart" onclick="addToCart('Crucial T705', 500)">Add to Cart</button>
+      </div>
+  
+      <!-- PC 1-->
+      <div class="desktop-item" data-name="PC">
+        <img src="PC1.jpeg" alt="Apex Pro">
+        <h3>Corsair Vengeance i7600</h3>
+        <p>High-end gaming desktop</p>
+        <ul>
+          <li> CPU: Intel Core Ultra 7 265K</li>
+          <li>GPU: Nvidia RTX 4070 Super</li>
+          <li>RAM: 64GB DDR5-6000 (2x 32GB)</li>
+          <li>Storage: 2TB PCIe 4.0 SSD</li>
+        </ul>
+        <span>$4,000 BZD</span>
+        <button class="add-to-cart" onclick="addToCart('Corsair Vengeance i760', 4000)">Add to Cart</button>
+      </div>
+  
+      <!-- PC 2-->
+      <div class="desktop-item" data-name="PC">
+        <img src="PC2.jpeg" alt="Velocity X">
+        <h3> iBuyPower Y60</h3>
+        <p>Stylish, customizable gaming rig</p>
+        <ul>
+          <li>CPU: AMD Ryzen 7 7700X</li>
+          <li>GPU: PNY GeForce RTX 4060 Ti Verto</li>
+          <li>RAM: 32GB DDR5-5200</li>
+          <li>Storage: 2TB Western Digital Blue SSD</li>
+        </ul>
+        <span>$4,500 BZD</span>
+        <button class="add-to-cart" onclick="addToCart('iBuyPower Y60', 4500)">Add to Cart</button>
+      </div>
+  
+      <!-- PC 3 -->
+      <div class="desktop-item" data-name="PC">
+        <img src="PC3.jpeg" alt="Eclipse Pro">
+        <h3>MSI Infinite RS 13th</h3>
+        <p>Powerhouse for gaming/work.</p>
+        <ul>
+          <li>CPU: Intel Core i9-13900KF</li>
+          <li>GPU: MSI RTX 4090 Surpim Liquid X</li>
+          <li>RAM: 32GB DDR5-5200</li>
+          <li>Storage: 2TB MSI Spatium PCIe 4.0 SSD</li>
+        </ul>
+        <span>$5,000 BZD</span>
+        <button class="add-to-cart" onclick="addToCart('MSI Infinite RS 13th', 5000)">Add to Cart</button>
+      </div>
+    <!-- Powr Bank 1-->
+    <div class="desktop-item" data-name="Power Bank">
+      <img src="PB1.jpeg" alt="Velocity X">
+      <h3> Anker Nano Power Bank</h3>
+      <p> Small, fast-charging power bank</p>
+      <ul>
+        <li>Capacity:	5,000 mAh</li>
+        <li>Wattage:	22.5 watts</li>
+        <li>Ports:USB-C x 1 for charging</li>
+        <li>Charges:	Most smartphones once</li>
+      </ul>
+      <span>$120 BZD</span>
+      <button class="add-to-cart" onclick="addToCart('Anker Nano Power Bank', 120)">Add to Cart</button>
+    </div>
+    <!-- Powr Bank 2-->
+    <div class="desktop-item" data-name="Power Bank">
+      <img src="PB2.jpeg" alt="Velocity X">
+      <h3> Nimble Champ (Series 2)</h3>
+      <p>Eco-friendly, portable charger</p>
+      <ul>
+        <li>Capacity:	10,000 mAh</li>
+        <li>Wattage: 65 watts</li>
+        <li>Ports:	USB-C x 2</li>
+        <li>Charges:	Most smartphones three times</li>
+      </ul>
+      <span>$130 BZD</span>
+      <button class="add-to-cart" onclick="addToCart('Nimble Champ', 130)">Add to Cart</button>
+    </div>
+    <!-- Powr Bank 3-->
+    <div class="desktop-item" data-name="Power Bank">
+      <img src="PB3.jpeg" alt="Velocity X">
+      <h3> Anker Laptop Power Bank</h3>
+      <p>High-capacity, laptop-ready</p>
+      <ul>
+        <li>Capacity:	25,000 mAh</li>
+        <li>Wattage:	165 watts</li>
+        <li>Ports: built-in USB-C cables x 2</li>
+        <li>Charges:	Most phones at least four times</li>
+      </ul>
+      <span>$200 BZD</span>
+      <button class="add-to-cart" onclick="addToCart('Anker Laptop Power Bank', 200)">Add to Cart</button>
+    </div>
+
+    <!-- Monitor 1-->
+    <div class="desktop-item" data-name="Monitor">
+      <img src="m1.jpeg" alt="Velocity X">
+      <h3> Dell UltraSharp 27 (U2723QE)</h3>
+      <p>27" 4K pro monitor with USB-C </p>
+          <ul>
+        <li>Panel Size: 27 inches</li>
+        <li>Native Resolution: 3840 by 2160</li>
+        <li>Aspect Ratio: 16:9</li>
+        <li>Screen Technology: IPS Black</li>
+      </ul>
+      <span>$1,800 BZD</span>
+      <button class="add-to-cart" onclick="addToCart('Dell UltraSharp 27 4K USB-C Hub Monitor (U2723QE)', 1800)">Add to Cart</button>
+    </div>
+    <!-- Monitor 2-->
+    <div class="desktop-item" data-name="Monitor">
+      <img src="m2.jpeg" alt="Velocity X">
+      <h3> Alienware AW3225QF 4K QD-OLED</h3>
+      <p> 32" 4K OLED, 240Hz curved</p>
+      <ul>
+        <li>Panel Size: 32 inches</li>
+        <li>Native Resolution: 3840 by 2160</li>
+        <li>Aspect Ratio: 16:9</li>
+        <li>Screen Technology: QD-OLED</li>
+      </ul>
+      <span>$2,400 BZD</span>
+      <button class="add-to-cart" onclick="addToCart('Alienware AW3225QF 4K QD-OLED', 2400)">Add to Cart</button>
+    </div>
+    <!-- Monitor 3-->
+    <div class="desktop-item" data-name="Monitor">
+      <img src="m3.jpeg" alt="Velocity X">
+      <h3> HP E27m G4 QHD Conferencing </h3>
+      <p> QHD monitor with webcam & USB-C</p>
+      <ul>
+        <li>Panel Size: 27 inches</li>
+        <li>Native Resolution: 2560 by 1440</li>
+        <li>Aspect Ratio: 16:9</li>
+        <li>Screen Technology: IPS</li>
+      </ul>
+      <span>$1,200 BZD</span>
+      <button class="add-to-cart" onclick="addToCart('V HP E27m G4 QHD USB-C Conferencing Monitor', 1200)">Add to Cart</button>
+    </div>
+    <!-- Accessories 1-->
+    <div class="desktop-item" data-name="Accessories">
+      <img src="a1.jpeg" alt="Velocity X">
+      <h3> Razer Basilisk V3 </h3>
+      <p>Ergonomic RGB gaming mouse</p>
+      <ul>
+        <li>Sensor: Razer Focus+</li>
+        <li>DPI: Up to 20,000 native </li>
+        <li>IPS: 650 IPS</li>
+        <li>Acceleration: 50g</li>
+      </ul>
+      <span>$180 BZD</span>
+      <button class="add-to-cart" onclick="addToCart('Razer Basilisk V3 ', 180)">Add to Cart</button>
+    </div>
+     <!-- Accessories 2-->
+     <div class="desktop-item" data-name="Accessories">
+      <img src="a2.jpeg" alt="Velocity X">
+      <h3> Steelseries QCK Heavy</h3>
+      <p>Thick precision mousepad</p>
+      <ul>
+        <li>Surface: Micro-woven cloth</li>
+        <li>Measurements: 17.7 x 15.7 x 0.2 inches</li>
+        <li>RGB Zones: None</li>
+        <li>Base: Non-slip rubber</li>
+      </ul>
+      <span>$90 BZD</span>
+      <button class="add-to-cart" onclick="addToCart('Steelseries QCK Heavy', 90)">Add to Cart</button>
+    </div>
+     <!-- Accessories 3-->
+     <div class="desktop-item" data-name="Accessories">
+      <img src="a3.jpeg" alt="Velocity X">
+      <h3> SteelSeries Apex Pro (Gen 3) </h3>
+      <p> Mechanical keyboard with OLED </p>
+      <ul>
+        <li>Connectivity: 2.4GHz, Bluetooth, or wired</li>
+        <li>witch Type: OmniPoint 3.0 Hall Effect</li>
+        <li>Battery Life: Up to 45 hours</li>
+        <li>Size: Full (wired-only) or TKL</li>
+      </ul>
+      <span>$500 BZD</span>
+      <button class="add-to-cart" onclick="addToCart('SteelSeries Apex Pro (Gen 3)', 500)">Add to Cart</button>
+    </div>
+  </section>
+</br>
+</div>
+     <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <!-- Left Side: WhatsApp Numbers -->
+      <div class="footer-section">
+        <h3>Contact Us on WhatsApp</h3>
+        <ul>
+          <li><a href="https://wa.me/5011234567">+501 123-4567</a></li>
+          <li><a href="https://wa.me/5012345678">+501 234-5678</a></li>
+          <li><a href="https://wa.me/5013456789">+501 345-6789</a></li>
+        </ul>
+      </div>
+
+      <!-- Middle: Email Addresses -->
+      <div class="footer-section">
+        <h3>Email Us</h3>
+        <ul>
+          <li><a href="mailto:support@techtower.com">support@techtower.com</a></li>
+          <li><a href="mailto:sales@techtower.com">sales@techtower.com</a></li>
+          <li><a href="mailto:info@techtower.com">info@techtower.com</a></li>
+        </ul>
+      </div>
+
+      <!-- Middle: Locations -->
+      <div class="footer-section">
+        <h3>Our Locations</h3>
+        <ul>
+          <li><a href="https://maps.app.goo.gl/WmurFi1jDcYjMkwz7" target="_blank">Orange Walk</a></li>
+          <li><a href="https://maps.app.goo.gl/5sSgth7XUNBfuuNh7" target="_blank">Belize City</a></li>
+          <li><a href="https://maps.app.goo.gl/GdhE1dpQNYwkrE3h9" target="_blank">Cayo</a></li>
+        </ul>
+      </div>
+
+      <!-- Right Side: Jobs -->
+      <div class="footer-section">
+        <h3>Jobs</h3>
+        <ul>
+          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSc8tH-EK8CVgPwNdVaZNhRnMOlpg4OGz8r_qvM5JM--Op6apg/viewform?usp=sharing">IT Specialist</a></li>
+          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSc8tH-EK8CVgPwNdVaZNhRnMOlpg4OGz8r_qvM5JM--Op6apg/viewform?usp=sharing">Sales Manager</a></li>
+          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSc8tH-EK8CVgPwNdVaZNhRnMOlpg4OGz8r_qvM5JM--Op6apg/viewform?usp=sharing">Support Specialist</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="copyright">
+      <p>&copy; 2025 TechTower. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" ></script>
+  <script src="filter.js"defer></script>
+  <script src="search.js"></script>
+  <script src="navbar.js"></script>
+  <script src="cart.js"></script>
+</body>
+</html>

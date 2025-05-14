@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biohazard Tic Tac Toe</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        
+        :root {
+            --virus-green: #00ff41;
+            --toxic-yellow: #d4ff00;
+            --infection-red: #ff003c;
+            --biohazard-orange: #ff6d00;
+            --dark-bg: #0d0208;
+        }
+        
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: var(--dark-bg);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--virus-green);
+            overflow: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 255, 65, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(212, 255, 0, 0.05) 0%, transparent 20%);
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .menu {
+            background: rgba(13, 2, 8, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(0, 255, 65, 0.3);
+            border: 2px solid var(--virus-green);
+            animation: borderPulse 3s infinite alternate;
+        }
+
+        @keyframes borderPulse {
+            0% {
+                box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+                border-color: var(--virus-green);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(212, 255, 0, 0.4);
+                border-color: var(--toxic-yellow);
+            }
+            100% {
+                box-shadow: 0 0 15px rgba(255, 0, 60, 0.3);
+                border-color: var(--infection-red);
+            }
+        }
+
+        h1 {
+            color: var(--virus-green);
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.7);
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        h1::after {
+            content: "☣";
+            position: absolute;
+            right: -25px;
+            top: -15px;
+            font-size: 1.5rem;
+            animation: spin 8s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .btn {
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid var(--virus-green);
+            color: var(--virus-green);
+            padding: 12px 25px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+            outline: none;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
+            background: rgba(0, 255, 65, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                rgba(0, 255, 65, 0.3) 50%,
+                transparent 55%
+            );
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -50%; }
+            100% { left: 150%; }
+        }
+
+        .btn-2p {
+            border-color: var(--virus-green);
+            color: var(--virus-green);
+        }
+
+        .btn-bot {
+            border-color: var(--toxic-yellow);
+            color: var(--toxic-yellow);
+            box-shadow: 0 0 10px rgba(212, 255, 0, 0.3);
+        }
+
+        .btn-bot:hover {
+            box-shadow: 0 0 20px rgba(212, 255, 0, 0.6);
+            background: rgba(212, 255, 0, 0.2);
+        }
+
+        .btn-back {
+            border-color: var(--biohazard-orange);
+            color: var(--biohazard-orange);
+            box-shadow: 0 0 10px rgba(255, 109, 0, 0.3);
+        }
+
+        .btn-back:hover {
+            box-shadow: 0 0 20px rgba(255, 109, 0, 0.6);
+            background: rgba(255, 109, 0, 0.2);
+        }
+
+        .btn-next {
+            border-color: var(--infection-red);
+            color: var(--infection-red);
+            box-shadow: 0 0 10px rgba(255, 0, 60, 0.3);
+        }
+
+        .btn-next:hover {
+            box-shadow: 0 0 20px rgba(255, 0, 60, 0.6);
+            background: rgba(255, 0, 60, 0.2);
+        }
+
+        .difficulty-buttons {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-easy {
+            border-color: var(--virus-green);
+        }
+
+        .btn-medium {
+            border-color: var(--toxic-yellow);
+        }
+
+        .btn-hard {
+            border-color: var(--infection-red);
+        }
+
+        .game-container {
+            display: none;
+            background: rgba(13, 2, 8, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(0, 255, 65, 0.3);
+            border: 2px solid var(--virus-green);
+            animation: borderPulse 3s infinite alternate;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 10px;
+            margin: 20px auto;
+        }
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            background: rgba(0, 255, 65, 0.05);
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 65, 0.3);
+        }
+
+        .cell:hover {
+            background: rgba(0, 255, 65, 0.1);
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+        }
+
+        .cell::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at center, 
+                    transparent 0%, 
+                    rgba(0, 255, 65, 0.1) 50%, 
+                    transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cell:hover::before {
+            opacity: 1;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+            100% { transform: scale(0.9); opacity: 0.7; }
+        }
+
+        .cell.x {
+            color: var(--infection-red);
+            text-shadow: 0 0 10px rgba(255, 0, 60, 0.7);
+        }
+
+        .cell.o {
+            color: var(--toxic-yellow);
+            text-shadow: 0 0 10px rgba(212, 255, 0, 0.7);
+        }
+
+        .game-info {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: var(--virus-green);
+            text-shadow: 0 0 5px rgba(0, 255, 65, 0.7);
+            letter-spacing: 1px;
+        }
+
+        .game-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .winning-cell {
+            animation: infect 1s infinite alternate;
+        }
+
+        @keyframes infect {
+            0% { 
+                transform: scale(1);
+                box-shadow: 0 0 10px var(--virus-green);
+            }
+            100% { 
+                transform: scale(1.1);
+                box-shadow: 0 0 25px var(--infection-red);
+            }
+        }
+
+        /* Virus particles background */
+        .viruses {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+        }
+
+        .virus {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.7;
+            filter: blur(1px);
+            animation: float 15s infinite linear;
+            background: radial-gradient(circle at center, 
+                var(--virus-green) 0%, 
+                transparent 70%);
+        }
+
+        .virus::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, 
+                transparent 50%, 
+                rgba(0, 255, 65, 0.3) 70%, 
+                transparent 90%);
+            border-radius: 50%;
+            animation: pulse 3s infinite alternate;
+        }
+
+        .virus::after {
+            content: '🦠';
+            position: absolute;
+            font-size: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            50% {
+                transform: translate(50px, 50px) rotate(180deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+
+        /* Create virus particles */
+        .virus:nth-child(1) {
+            width: 20px;
+            height: 20px;
+            top: 10%;
+            left: 10%;
+            animation-duration: 20s;
+        }
+        .virus:nth-child(2) {
+            width: 30px;
+            height: 30px;
+            top: 20%;
+            left: 80%;
+            animation-duration: 25s;
+            animation-delay: 2s;
+        }
+        .virus:nth-child(3) {
+            width: 15px;
+            height: 15px;
+            top: 70%;
+            left: 20%;
+            animation-duration: 18s;
+            animation-delay: 1s;
+        }
+        .virus:nth-child(4) {
+            width: 25px;
+            height: 25px;
+            top: 40%;
+            left: 50%;
+            animation-duration: 22s;
+            animation-delay: 3s;
+        }
+        .virus:nth-child(5) {
+            width: 10px;
+            height: 10px;
+            top: 80%;
+            left: 70%;
+            animation-duration: 15s;
+            animation-delay: 4s;
+        }
+
+
+
+
+
+
+
+       
+    </style>
+</head>
+<body>
+    <div class="viruses">
+        <div class="virus"></div>
+        <div class="virus"></div>
+        <div class="virus"></div>
+        <div class="virus"></div>
+        <div class="virus"></div>
+    </div>
+
+    <div class="container">
+        <div class="menu" id="main-menu">
+            <h1>BIOHAZARD TIC TAC TOE</h1>
+            <button class="btn btn-2p" id="two-player-btn">2 PLAYERS</button>
+            <button class="btn btn-bot" id="bot-btn">VS COMPUTER</button>
+            
+            <div class="difficulty-buttons" id="difficulty-buttons">
+                <button class="btn btn-easy" id="easy-btn">STAGE 1</button>
+                <button class="btn btn-medium" id="medium-btn">STAGE 2</button>
+                <button class="btn btn-hard" id="hard-btn">STAGE 3</button>
+            </div>
+        </div>
+
+        <div class="game-container" id="game-container">
+            <div class="game-board" id="board">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
+            <div class="game-info" id="game-info">PLAYER X'S TURN</div>
+            <div class="game-buttons">
+                <button class="btn btn-back" id="back-btn">Game Menu</button>
+             <a href="index.html">   <button class="btn btn-next" id="next-btn">Home Page</button></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game state
+        let board = ['', '', '', '', '', '', '', '', ''];
+        let currentPlayer = 'X';
+        let gameActive = true;
+        let vsBot = false;
+        let botDifficulty = 'easy';
+        let botPlayer = 'O';
+
+        // DOM elements
+        const mainMenu = document.getElementById('main-menu');
+        const gameContainer = document.getElementById('game-container');
+        const boardElement = document.getElementById('board');
+        const gameInfo = document.getElementById('game-info');
+        const twoPlayerBtn = document.getElementById('two-player-btn');
+        const botBtn = document.getElementById('bot-btn');
+        const difficultyButtons = document.getElementById('difficulty-buttons');
+        const easyBtn = document.getElementById('easy-btn');
+        const mediumBtn = document.getElementById('medium-btn');
+        const hardBtn = document.getElementById('hard-btn');
+        const backBtn = document.getElementById('back-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const cells = document.querySelectorAll('.cell');
+
+        // Winning conditions
+        const winningConditions = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+            [0, 4, 8], [2, 4, 6] // diagonals
+        ];
+
+        // Event listeners
+        twoPlayerBtn.addEventListener('click', () => {
+            vsBot = false;
+            startGame();
+        });
+
+        botBtn.addEventListener('click', () => {
+            difficultyButtons.style.display = 'block';
+        });
+
+        easyBtn.addEventListener('click', () => {
+            vsBot = true;
+            botDifficulty = 'easy';
+            botPlayer = 'O';
+            startGame();
+        });
+
+        mediumBtn.addEventListener('click', () => {
+            vsBot = true;
+            botDifficulty = 'medium';
+            botPlayer = 'O';
+            startGame();
+        });
+
+        hardBtn.addEventListener('click', () => {
+            vsBot = true;
+            botDifficulty = 'hard';
+            botPlayer = 'O';
+            startGame();
+        });
+
+        backBtn.addEventListener('click', () => {
+            resetGame();
+            gameContainer.style.display = 'none';
+            mainMenu.style.display = 'block';
+            difficultyButtons.style.display = 'none';
+        });
+
+        nextBtn.addEventListener('click', () => {
+            // This will link to your next HTML page
+            console.log("Quarantine initiated!");
+        });
+
+        cells.forEach(cell => {
+            cell.addEventListener('click', handleCellClick);
+        });
+
+        // Game functions
+        function startGame() {
+            mainMenu.style.display = 'none';
+            difficultyButtons.style.display = 'none';
+            gameContainer.style.display = 'block';
+            resetGame();
+            
+            // If playing against bot and bot goes first
+            if (vsBot && botPlayer === 'X') {
+                makeBotMove();
+            }
+        }
+
+        function handleCellClick(e) {
+            const clickedCell = e.target;
+            const clickedCellIndex = parseInt(clickedCell.getAttribute('data-index'));
+
+            if (board[clickedCellIndex] !== '' || !gameActive) {
+                return;
+            }
+
+            updateCell(clickedCell, clickedCellIndex);
+            checkResult();
+            
+            // If playing against bot and game is still active
+            if (vsBot && gameActive && currentPlayer === botPlayer) {
+                setTimeout(makeBotMove, 500); // Small delay for better UX
+            }
+        }
+
+        function updateCell(cell, index) {
+            board[index] = currentPlayer;
+            cell.textContent = currentPlayer;
+            cell.classList.add(currentPlayer.toLowerCase());
+            
+            // Add infection effect
+            if (currentPlayer === 'X') {
+                cell.style.animation = 'infectX 0.5s ease-out';
+            } else {
+                cell.style.animation = 'infectO 0.5s ease-out';
+            }
+        }
+
+        function checkResult() {
+            let roundWon = false;
+
+            for (let i = 0; i < winningConditions.length; i++) {
+                const [a, b, c] = winningConditions[i];
+                if (board[a] === '' || board[b] === '' || board[c] === '') {
+                    continue;
+                }
+                if (board[a] === board[b] && board[b] === board[c]) {
+                    roundWon = true;
+                    // Highlight winning cells
+                    document.querySelector(`.cell[data-index="${a}"]`).classList.add('winning-cell');
+                    document.querySelector(`.cell[data-index="${b}"]`).classList.add('winning-cell');
+                    document.querySelector(`.cell[data-index="${c}"]`).classList.add('winning-cell');
+                    break;
+                }
+            }
+
+            if (roundWon) {
+                gameInfo.textContent = `VIRUS ${currentPlayer} SPREADS!`;
+                gameActive = false;
+                return;
+            }
+
+            if (!board.includes('')) {
+                gameInfo.textContent = "CONTAINMENT FAILED!";
+                gameActive = false;
+                return;
+            }
+
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            gameInfo.textContent = `PLAYER ${currentPlayer}'S TURN`;
+        }
+
+        function resetGame() {
+            board = ['', '', '', '', '', '', '', '', ''];
+            currentPlayer = 'X';
+            gameActive = true;
+            gameInfo.textContent = `PLAYER ${currentPlayer}'S TURN`;
+
+            cells.forEach(cell => {
+                cell.textContent = '';
+                cell.classList.remove('x', 'o', 'winning-cell');
+                cell.style.animation = '';
+            });
+        }
+
+        // Bot logic
+        function makeBotMove() {
+            if (!gameActive) return;
+
+            let move;
+            
+            switch (botDifficulty) {
+                case 'easy':
+                    move = getRandomMove();
+                    break;
+                case 'medium':
+                    // 50% chance to make a smart move, 50% random
+                    move = Math.random() < 0.5 ? getSmartMove() : getRandomMove();
+                    break;
+                case 'hard':
+                    move = getSmartMove();
+                    break;
+                default:
+                    move = getRandomMove();
+            }
+
+            if (move !== -1) {
+                const cell = document.querySelector(`.cell[data-index="${move}"]`);
+                updateCell(cell, move);
+                checkResult();
+            }
+        }
+
+        function getRandomMove() {
+            const availableMoves = board.map((cell, index) => cell === '' ? index : -1).filter(index => index !== -1);
+            if (availableMoves.length === 0) return -1;
+            const randomIndex = Math.floor(Math.random() * availableMoves.length);
+            return availableMoves[randomIndex];
+        }
+
+        function getSmartMove() {
+            // Check for winning move
+            for (let i = 0; i < winningConditions.length; i++) {
+                const [a, b, c] = winningConditions[i];
+                if (board[a] === botPlayer && board[b] === botPlayer && board[c] === '') return c;
+                if (board[a] === botPlayer && board[c] === botPlayer && board[b] === '') return b;
+                if (board[b] === botPlayer && board[c] === botPlayer && board[a] === '') return a;
+            }
+
+            // Block opponent's winning move
+            const opponent = botPlayer === 'X' ? 'O' : 'X';
+            for (let i = 0; i < winningConditions.length; i++) {
+                const [a, b, c] = winningConditions[i];
+                if (board[a] === opponent && board[b] === opponent && board[c] === '') return c;
+                if (board[a] === opponent && board[c] === opponent && board[b] === '') return b;
+                if (board[b] === opponent && board[c] === opponent && board[a] === '') return a;
+            }
+
+            // Take center if available
+            if (board[4] === '') return 4;
+
+            // Take a corner if available
+            const corners = [0, 2, 6, 8];
+            const availableCorners = corners.filter(index => board[index] === '');
+            if (availableCorners.length > 0) {
+                return availableCorners[Math.floor(Math.random() * availableCorners.length)];
+            }
+
+            // Take any available edge
+            const edges = [1, 3, 5, 7];
+            const availableEdges = edges.filter(index => board[index] === '');
+            if (availableEdges.length > 0) {
+                return availableEdges[Math.floor(Math.random() * availableEdges.length)];
+            }
+
+            // Fallback to random move if no smart move found
+            return getRandomMove();
+        }
+
+        
+    </script>
+</body>
+</html>
+
+
+
+
+        
+        
