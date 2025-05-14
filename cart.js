@@ -23,7 +23,7 @@ function addToCart(name, price) {
     updateCartCount();
     
     // Show confirmation
-    
+    alert(`${name} has been added to your cart!`);
 }
 
 // Function to update cart count in header
@@ -53,6 +53,7 @@ function renderCart() {
     cart.forEach((item, index) => {
         const itemTotal = item.price * item.quantity;
         const itemGST = itemTotal * 0.125; // 12.5% GST
+        const itemPriceBeforeGST = itemTotal - itemGST;
         
         subtotal += itemTotal;
         gstTotal += itemGST;
@@ -60,9 +61,25 @@ function renderCart() {
         const li = document.createElement('li');
         li.innerHTML = `
             <div class="cart-item">
-                <span class="item-name">${item.name}</span>
-                <span class="item-quantity">${item.quantity} × $${item.price.toFixed(2)}</span>
-                <span class="item-total">$${itemTotal.toFixed(2)}</span>
+                <div class="item-name">${item.name}</div>
+                <div class="item-details">
+                    <div class="price-row">
+                        <span class="price-label">Price:</span>
+                        <span class="price-value">$${itemPriceBeforeGST.toFixed(2)}</span>
+                    </div>
+                    <div class="gst-row">
+                        <span class="gst-label">GST (12.5%):</span>
+                        <span class="gst-value">$${itemGST.toFixed(2)}</span>
+                    </div>
+                    <div class="quantity-row">
+                        <span class="quantity-label">Quantity:</span>
+                        <span class="quantity-value">${item.quantity}</span>
+                    </div>
+                    <div class="item-total-row">
+                        <span class="total-label">Item Total:</span>
+                        <span class="total-value">$${itemTotal.toFixed(2)}</span>
+                    </div>
+                </div>
                 <button class="remove-item" data-index="${index}">×</button>
             </div>
         `;
@@ -71,9 +88,10 @@ function renderCart() {
     
     // Calculate totals
     const total = subtotal;
+    const subtotalBeforeGST = subtotal - gstTotal;
     
     // Update totals display
-    subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+    subtotalEl.textContent = `$${subtotalBeforeGST.toFixed(2)}`;
     gstEl.textContent = `$${gstTotal.toFixed(2)}`;
     totalEl.textContent = `$${total.toFixed(2)}`;
     
@@ -104,7 +122,7 @@ function setupPaymentForm() {
     // Confirm payment button
     document.getElementById('confirm-payment').addEventListener('click', function() {
         // Process payment (in a real app, this would connect to a payment processor)
-     
+        alert('Payment successful! Thank you for your purchase.');
         
         // Clear cart
         cart = [];
