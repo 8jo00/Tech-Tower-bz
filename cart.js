@@ -23,7 +23,7 @@ function addToCart(name, price) {
     updateCartCount();
     
     // Show confirmation
-    alert(`${name} has been added to your cart!`);
+   
 }
 
 // Function to update cart count in header
@@ -122,8 +122,7 @@ function setupPaymentForm() {
     // Confirm payment button
     document.getElementById('confirm-payment').addEventListener('click', function() {
         // Process payment (in a real app, this would connect to a payment processor)
-        alert('Payment successful! Thank you for your purchase.');
-        
+       
         // Clear cart
         cart = [];
         localStorage.setItem('cart', JSON.stringify(cart));
