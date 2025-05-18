@@ -117,61 +117,7 @@
       <p>&copy; 2025 TechTower. All rights reserved.</p>
     </div>
   </footer>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Attach search functionality to the button click
-      const searchButton = document.querySelector(".search-bar button");
-      if (searchButton) {
-        searchButton.addEventListener("click", searchProduct);
-      }
-    
-      // Attach search functionality to the Enter key press
-      const searchInput = document.getElementById('search-input');
-      if (searchInput) {
-        searchInput.addEventListener('keypress', function (e) {
-          if (e.key === 'Enter') {
-            searchProduct();
-          }
-        });
-      }
-    });
-    
-    function searchProduct() {
-      var searchTerm = document.getElementById('search-input').value.trim().toLowerCase();
-      var items = document.querySelectorAll('.desktop-item');
-      var found = false;
-    
-      items.forEach(function(item) {
-        var name = item.querySelector('h3').textContent.toLowerCase();
-        if (name.includes(searchTerm)) {
-          item.style.display = 'block';
-          found = true;
-        } else {
-          item.style.display = 'none';
-        }
-      });
-    
-      // Check if any items are displayed
-      if (!found) {
-        var noResultsMessage = document.getElementById('no-results');
-        if (!noResultsMessage) {
-          noResultsMessage = document.createElement('div');
-          noResultsMessage.id = 'no-results';
-          noResultsMessage.textContent = 'No results found.';
-          noResultsMessage.style.color = 'red';
-          noResultsMessage.style.marginTop = '20px';
-          document.querySelector('.desktopgrid').appendChild(noResultsMessage);
-        } else {
-          noResultsMessage.style.display = 'block';
-        }
-      } else {
-        var noResultsMessage = document.getElementById('no-results');
-        if (noResultsMessage) {
-          noResultsMessage.style.display = 'none';
-        }
-      }
-    }
-  </script>
+  
 
 
   <script src="script.js"></script>
