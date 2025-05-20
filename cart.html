@@ -6,7 +6,6 @@
   <title>TechTower - Cart</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron&display=swap" rel="stylesheet">
-
 </head>
 <body>
   <!-- Navigation Bar -->
@@ -49,52 +48,57 @@
     </div>
   </header>
 
-
   <!-- Cart Content -->
-<section id="cart" class="tab-content">
-  <h2><center>Your Cart</center></h2>
-  <div class="cart-container">
+  <section id="cart" class="tab-content">
+    <h2><center>Your Cart</center></h2>
+    <div class="cart-container">
       <!-- Receipt Section -->
       <div class="receipt">
-          <div class="receipt-header">
-              <img src="logo.png" alt="TechTower Logo">
-              <h2>Order Summary</h2>
-          </div>
-          <div class="receipt-items">
-              <h3>Items in Cart</h3>
-              <ul id="cart-items-list">
-                  <!-- Cart items will be dynamically inserted here -->
-              </ul>
-          </div>
-          <div class="receipt-totals">
-              <p>Subtotal: <span id="subtotal">$0.00</span></p>
-              <p>GST (12.5%): <span id="gst">$0.00</span></p>
-              <p><strong>Total: <span id="total">$0.00</span></strong></p>
-          </div>
+        <div class="receipt-header">
+          <img src="logo.png" alt="TechTower Logo">
+          <h2>Order Summary</h2>
+        </div>
+        <div class="receipt-items">
+          <h3>Items in Cart</h3>
+          <ul id="cart-items-list">
+            <!-- Dynamic cart items will appear here -->
+          </ul>
+        </div>
+        <div class="receipt-totals">
+          <p>Subtotal: <span id="subtotal">$0.00</span></p>
+          <p>GST (12.5%): <span id="gst">$0.00</span></p>
+          <p><strong>Total: <span id="total">$0.00</span></strong></p>
+        </div>
       </div>
 
       <!-- Payment Section -->
       <div class="payment">
-          <h3>Payment Details</h3>
-          <form id="payment-form">
-              <label for="cardholder-name">Cardholder Name</label>
-              <input type="text" id="cardholder-name" name="cardholder-name" placeholder="Card Holder Name" required>
-              
-              <label for="card-number">Card Number</label>
-              <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" required>
-              
-              <label for="expiration-date">Expiration Date</label>
-              <input type="text" id="expiration-date" name="expiration-date" placeholder="MM/YY" required>
-              
-              <label for="cvv">CVV</label>
-              <input type="text" id="cvv" name="cvv" placeholder="123" required>
-              
-              <button type="submit" id="submit-payment">Pay Now</button>
-          </form>
+        <h3>Payment Details</h3>
+        <form id="payment-form">
+          <label for="cardholder-name">Cardholder's Name</label>
+          <input type="text" id="cardholder-name" name="cardholder-name" placeholder="Card Holder Name" required>
+          
+          <label for="card-number">Card Number</label>
+          <div class="card-input-wrapper">
+            <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" required>
+            <div class="card-icons">
+              <img src="visa.png" alt="Visa" id="visa-icon" class="card-icon hidden">
+              <img src="master.png" alt="Mastercard" id="mastercard-icon" class="card-icon hidden">
+              <img src="express.png" alt="American Express" id="amex-icon" class="card-icon hidden">
+            </div>
+          </div>
+          
+          <label for="expiration-date">Expiration Date</label>
+          <input type="text" id="expiration-date" name="expiration-date" placeholder="MM/YY" required>
+          
+          <label for="cvv">CVV</label>
+          <input type="text" id="cvv" name="cvv" placeholder="123" required>
+          
+          <button type="submit" id="submit-payment">Pay Now</button>
+        </form>
       </div>
-  </div>
-</section>
-
+    </div>
+  </section>
 
   <!-- Confirmation Modal -->
   <div class="modal">
@@ -155,8 +159,6 @@
       <p>&copy; 2025 TechTower. All rights reserved.</p>
     </div>
   </footer>
- 
-
 
   <script src="script.js"></script>
   <script src="navbar.js"></script>

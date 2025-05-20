@@ -122,7 +122,8 @@ function setupPaymentForm() {
     // Confirm payment button
     document.getElementById('confirm-payment').addEventListener('click', function() {
         // Process payment (in a real app, this would connect to a payment processor)
-       
+        
+        
         // Clear cart
         cart = [];
         localStorage.setItem('cart', JSON.stringify(cart));
@@ -148,3 +149,51 @@ document.addEventListener('DOMContentLoaded', function() {
     // Make addToCart available globally
     window.addToCart = addToCart;
 });
+
+
+//icons card//
+document.getElementById('card-number').addEventListener('input', function(e) {
+  const cardNumber = e.target.value.replace(/\s+/g, '');
+  const visaIcon = document.getElementById('visa-icon');
+  const mastercardIcon = document.getElementById('mastercard-icon');
+  const amexIcon = document.getElementById('amex-icon');
+
+  // Hide all icons first
+  [visaIcon, mastercardIcon, amexIcon].forEach(icon => {
+    icon.classList.remove('visible');
+    icon.classList.add('hidden');
+  });
+
+  // Show only the matching card icon
+  if (/^4/.test(cardNumber)) {
+    visaIcon.classList.remove('hidden');
+    visaIcon.classList.add('visible');
+  } 
+  else if (/^5[1-5]/.test(cardNumber)) {
+    mastercardIcon.classList.remove('hidden');
+    mastercardIcon.classList.add('visible');
+  } 
+  else if (/^3[47]/.test(cardNumber)) {
+    amexIcon.classList.remove('hidden');
+    amexIcon.classList.add('visible');
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

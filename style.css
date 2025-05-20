@@ -1668,12 +1668,14 @@ footer {
 }
 
 .close-filter {
-  background: none;
-  border: none;
+  background-color: rgba(22, 30, 141, 0.938);
+  border-radius: 50%;
   font-size: 24px;
+  border: none;
+  
   cursor: pointer;
   color: rgba(255,255,255,0.7);
-  padding: 0 8px;
+  padding: 0 6px;
   transition: color 0.2s ease;
 }
 
@@ -1714,9 +1716,9 @@ footer {
 
 .price-input input[type="number"] {
   width: 90%;
-  padding: 20px 3px;
+  padding: 10px 3px;
   border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 8px;
+  border-radius: 9px;
   font-size: 14px;
   background: rgba(255,255,255,0.05);
   color: #fff;
@@ -2613,22 +2615,106 @@ input, textarea, select {
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 5px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  
+  /* Animation */
+  animation: 
+    bounceEntrance 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) both,
+    subtleFloat 4s ease-in-out infinite 1.2s;
+  transform-origin: center bottom;
+}
+
+/* Dynamic Bounce Entrance */
+@keyframes bounceEntrance {
+  0% { 
+    transform: translateY(100px) scale(0.8) rotate(-2deg);
+    opacity: 0;
+    box-shadow: 0 50px 50px rgba(0,0,0,0);
+  }
+  40% { 
+    transform: translateY(-40px) scale(1.05) rotate(1deg); 
+  }
+  70% { 
+    transform: translateY(20px) scale(0.98); 
+  }
+  100% { 
+    transform: translateY(0) scale(1) rotate(0);
+    opacity: 1;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+}
+
+/* Continuous Subtle Floating */
+@keyframes subtleFloat {
+  0%, 100% { 
+    transform: translateY(0) rotate(0.5deg);
+  }
+  50% { 
+    transform: translateY(-15px) rotate(-0.5deg);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  }
 }
 
 .company-info h1 {
   font-size: 4rem;
   margin: 0;
   color: #fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  animation: textGlow 3s ease-in-out infinite alternate;
 }
 
 .moto {
   font-size: 1.5rem;
   color: #fff;
   margin-top: 10px;
+  opacity: 0;
+  animation: 
+    fadeInUp 0.7s ease-out 0.5s forwards,
+    textPulse 4s ease-in-out infinite;
 }
 
-/* Responsive adjustments */
+@keyframes fadeInUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes textGlow {
+  to {
+    text-shadow: 0 0 15px rgba(255,255,255,0.7), 0 2px 10px rgba(0,0,0,0.5);
+  }
+}
+
+@keyframes textPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
+  .company-info {
+    animation: 
+      bounceEntrance 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) both,
+      subtleFloat 4s ease-in-out infinite 1s;
+  }
+  
+  @keyframes bounceEntrance {
+    0% { transform: translateY(50px) scale(0.9); opacity: 0; }
+    40% { transform: translateY(-20px) scale(1.03); }
+    70% { transform: translateY(10px) scale(0.98); }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+  }
+  
+  @keyframes subtleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  
   .company-info h1 {
     font-size: 2.5rem;
   }
@@ -2740,3 +2826,37 @@ input, textarea, select {
   position: absolute;
   left: 0;
 }
+
+
+/*icons*/
+.card-input-wrapper {
+  position: relative;
+}
+
+.card-icons {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 5px;
+}
+
+.card-icon {
+  width: 30px; /* Adjust size as needed */
+  height: auto;
+  display: none; /* Hidden by default */
+}
+
+.card-icon.visible {
+  display: block; /* Only show when active */
+}
+
+/* Ensure input has padding so text doesn't overlap icons */
+#card-number {
+  padding-right: 100px; /* Adjust based on icon width */
+  width: 100%;
+}
+
+
+
