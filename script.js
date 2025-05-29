@@ -60,7 +60,7 @@ document.getElementById("subscribe-form")?.addEventListener("submit", (e) => {
     }
     document.getElementById("subscribe-email").value = "";
   } else {
-    alert("Please enter a valid email address.");
+   
   }
 });
 
